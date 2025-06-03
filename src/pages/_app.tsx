@@ -4,6 +4,7 @@ import { Geist } from "next/font/google";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import { ThemeProvider } from "~/components/theme-provider";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -11,9 +12,16 @@ const geist = Geist({
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <div className={geist.className}>
-      <Component {...pageProps} />
-    </div>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <div className={geist.className}>
+        <Component {...pageProps} />
+      </div>
+    </ThemeProvider>
   );
 };
 
